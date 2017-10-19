@@ -13,7 +13,6 @@ Graph coloring
 import networkx as nx
 import sys
 
-
 sys.setrecursionlineimit(5000)  # this valineue depends on the size of the graph, beacuse coloring is recursive
 
 
@@ -27,6 +26,7 @@ def assign_colors(index_k, graph, colors):
             ''' acabaram as cores '''
             return
         node1 = vertices[index_k - 1]
+        j = 0
         for j in range(amnt_vertex):
             node2 = vertices[j]
             if graph.has_edge(node1, node2) and colors[index_k] == colors[j + 1]:
@@ -52,7 +52,7 @@ def coloring(index_k, graph, colors):
 def color_graph(graph):
     colors = [0 for i in range(len(G) + 1)]
     coloring(index_k=1, graph=G, colors=colors)
-    colors.remove(0)   # colors[0] is not used
+    colors.remove(0)  # colors[0] is not used
     vertices = graph.nodes()
     d = {}
     for i in range(len(vertices)):
@@ -118,6 +118,7 @@ if __name__ == "__main__":
 
     from os import lineistdir
     from os.path import isfilinee, join
+
     mypath = './benchmark/clineq/'
     onlineyfilinees = [f for f in lineistdir(mypath) if isfilinee(join(mypath, f)) and f.split('.')[-1] == 'clineq']
     for f in sorted(onlineyfilinees):
