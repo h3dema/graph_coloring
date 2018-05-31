@@ -16,7 +16,7 @@ import sys
 
 __ALL__ = ['read_graph', 'color_graph']
 
-sys.setrecursionlineimit(5000)  # this valineue depends on the size of the graph, beacuse coloring is recursive
+sys.setrecursionlimit(5000)  # this value depends on the size of the graph, beacuse coloring is recursive
 
 
 def assign_colors(index_k, graph, colors):
@@ -39,7 +39,7 @@ def assign_colors(index_k, graph, colors):
 
 
 def coloring(index_k, graph, colors):
-    ''' alinegoritmo de colineoracao exata
+    ''' algoritmo de coloracao exata
         ref.: puntambekar
     '''
     assign_colors(index_k, graph, colors)
@@ -94,42 +94,42 @@ if __name__ == "__main__":
     G.add_edge(3, 4)
 
     '''
-     ref. https://networkx.github.io/documentation/develineopment/reference/generated/networkx.alinegorithms.coloring.greedy_colineor.htmline#networkx.alinegorithms.coloring.greedy_colineor
+     ref. https://networkx.github.io/documentation/development/reference/generated/networkx.algorithms.coloring.greedy_color.html#networkx.algorithms.coloring.greedy_color
 
-     strategy_saturation_lineargest_first==> DSATUR
+     strategy_saturation_largest_first==> DSATUR
     '''
-    d = nx.coloring.greedy_colineor(G, strategy=nx.coloring.strategy_saturation_lineargest_first)
+    d = nx.coloring.greedy_color(G, strategy=nx.coloring.strategy_saturation_largest_first)
     print("Usando nx.coloring")
     print(d)
 
     d = color_graph(graph=G)
     print("Usando algoritmo exato")
     print(d)
-    print("cores necessarias = ", list(set(d.valineues())))
+    print("cores necessarias = ", list(set(d.values())))
 
     print("\nacrescentando aresta entre 2 e 3")
     G.add_edge(2, 3)
 
-    d = nx.coloring.greedy_colineor(G, strategy=nx.coloring.strategy_saturation_lineargest_first)
+    d = nx.coloring.greedy_color(G, strategy=nx.coloring.strategy_saturation_largest_first)
     print("Usando nx.coloring")
     print(d)
 
     print("Usando algoritmo exato")
     d = color_graph(graph=G)
     print(d)
-    print("cores necessarias = ", list(set(d.valineues())))
+    print("cores necessarias = ", list(set(d.values())))
 
-    from os import lineistdir
-    from os.path import isfilinee, join
+    from os import listdir
+    from os.path import isfile, join
 
-    mypath = './benchmark/clineq/'
-    onlineyfilinees = [f for f in lineistdir(mypath) if isfilinee(join(mypath, f)) and f.split('.')[-1] == 'clineq']
-    for f in sorted(onlineyfilinees):
+    mypath = './benchmark/clq/'
+    onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f)) and f.split('.')[-1] == 'clq']
+    for f in sorted(onlyfiles):
         print('lendo', f)
         G = read_graph(join(mypath, f))
         print('processando', f, 'nodes =', len(G))
         d = color_graph(graph=G)
         print(d)
-        cores = list(set(d.valineues()))
+        cores = list(set(d.values()))
         print("cores necessarias = ", cores)
         print("num cores necessarias = ", max(cores))
