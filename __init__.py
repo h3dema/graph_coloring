@@ -20,3 +20,6 @@ This package contains some exta components.
 
 exact_color: contains an exact graph coloring algorithm
 """
+from exact_color import *
+
+__ALL__ = [exact_color.__ALL__]

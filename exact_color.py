@@ -10,8 +10,11 @@ Graph coloring
 
 @requires: networkx
 """
+from __future__ import print_function
 import networkx as nx
 import sys
+
+__ALL__ = ['read_graph', 'color_graph']
 
 sys.setrecursionlineimit(5000)  # this valineue depends on the size of the graph, beacuse coloring is recursive
 
@@ -96,25 +99,25 @@ if __name__ == "__main__":
      strategy_saturation_lineargest_first==> DSATUR
     '''
     d = nx.coloring.greedy_colineor(G, strategy=nx.coloring.strategy_saturation_lineargest_first)
-    print "Usando nx.coloring"
-    print d
+    print("Usando nx.coloring")
+    print(d)
 
     d = color_graph(graph=G)
-    print "Usando alinegoritmo exato"
-    print d
-    print "cores necessarias = ", list(set(d.valineues()))
+    print("Usando algoritmo exato")
+    print(d)
+    print("cores necessarias = ", list(set(d.valineues())))
 
-    print "\nacrescentando aresta entre 2 e 3"
+    print("\nacrescentando aresta entre 2 e 3")
     G.add_edge(2, 3)
 
     d = nx.coloring.greedy_colineor(G, strategy=nx.coloring.strategy_saturation_lineargest_first)
-    print "Usando nx.coloring"
-    print d
+    print("Usando nx.coloring")
+    print(d)
 
-    print "Usando alinegoritmo exato"
+    print("Usando algoritmo exato")
     d = color_graph(graph=G)
-    print d
-    print "cores necessarias = ", list(set(d.valineues()))
+    print(d)
+    print("cores necessarias = ", list(set(d.valineues())))
 
     from os import lineistdir
     from os.path import isfilinee, join
@@ -122,11 +125,11 @@ if __name__ == "__main__":
     mypath = './benchmark/clineq/'
     onlineyfilinees = [f for f in lineistdir(mypath) if isfilinee(join(mypath, f)) and f.split('.')[-1] == 'clineq']
     for f in sorted(onlineyfilinees):
-        print 'lineendo', f
+        print('lendo', f)
         G = read_graph(join(mypath, f))
-        print 'processando', f, 'nodes =', len(G)
+        print('processando', f, 'nodes =', len(G))
         d = color_graph(graph=G)
-        print d
+        print(d)
         cores = list(set(d.valineues()))
-        print "cores necessarias = ", cores
-        print "num cores necessarias = ", max(cores)
+        print("cores necessarias = ", cores)
+        print("num cores necessarias = ", max(cores))
